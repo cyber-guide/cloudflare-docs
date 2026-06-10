@@ -1,6 +1,7 @@
 ---
 import Default from "@astrojs/starlight/components/Head.astro";
 import { differenceInCalendarDays } from "date-fns";
+import Analytics from "@vercel/analytics/astro";
 import "tippy.js/dist/tippy.css";
 import "~/styles/tippy.css";
 
@@ -277,4 +278,5 @@ metaTags.map((attrs) => {
 <script src="src/scripts/analytics.ts"></script>
 <script src="src/scripts/explain-code.ts"></script>
 <script src="src/scripts/webmcp.ts"></script>
+<Analytics />
 <Default><slot /></Default>

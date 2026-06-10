@@ -82,6 +82,7 @@
 		"@types/react-dom": "19.0.4",
 		"@types/unist": "3.0.3",
 		"@typescript-eslint/parser": "8.59.3",
+		"@vercel/analytics": "2.0.1",
 		"agents": "0.12.3",
 		"algoliasearch": "5.52.1",
 		"astro": "6.3.1",
