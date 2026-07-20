@@ -40,6 +40,7 @@ cloudflare-docs/
 │                           # Fetched from https://middlecache.ced.cloudflare.com/v1/cloudflare-skills/skills.tar.gz
 │                           # by bin/fetch-skills.ts, which runs automatically via prebuild/predev hooks.
 │                           # skills/ is in .gitignore and is NOT committed to the repository.
+├── .flue/                  # Flue cloudflare-docs-bot — see .flue/AGENTS.md
 ├── astro.config.ts         # Astro + Starlight configuration
 ├── ec.config.mjs           # Expressive Code (syntax highlighting) configuration
 ├── package.json
@@ -135,11 +136,10 @@ pnpm exec tsm bin/validate-redirects.ts  # Only if public/__redirects was modifi
 
 ### Fixing formatting
 
-After editing any `.ts`, `.tsx`, `.js`, `.mjs`, or `.css` file, run:
+After editing any prettier-scoped file, run:
 
 ```bash
-pnpm run format             # Auto-fix code + data files
-pnpm run format:content     # Auto-fix MDX/MD/Astro files
+pnpm run format             # Auto-fix all prettier-scoped files
 ```
 
 Always format edited files before committing — CI runs `pnpm run format:core:check` and will fail if formatting is off.
@@ -245,18 +245,27 @@ New web components in this codebase should use the `cfdocs-` prefix for custom e
 
 Existing components (`warp-download`, `stream-player`, `rule-id`, `check-box`, `r2-local-uploads-diagram`, `animated-workflow-diagram`, `autoconfig-diagram`) are exempt from the `cfdocs-` prefix requirement and do not need to be renamed.
 
-## Agent skills
+## Flue cloudflare-docs-bot
 
-Repo-specific skills live in `.agents/skills/`. Each skill provides specialized instructions for a particular task. Load a skill when the task matches its description.
+The PR review bot for this repository lives in `.flue/`. It is a Cloudflare Worker (`cloudflare-docs-flue`) built with the Flue framework that reviews pull requests and posts structured feedback as GitHub comments.
 
-| Skill               | When to use                                                        |
-| ------------------- | ------------------------------------------------------------------ |
-| `changelog`         | Creating, editing, or reviewing changelog entries                  |
-| `code-review`       | Reviewing Workers/platform code for type correctness and API usage |
-| `dependabot-review` | Analyzing a Dependabot PR for impact on this repo                  |
-| `docs-review`       | Reviewing documentation PRs for style, structure, and correctness  |
-| `eli5`              | Simplifying technical documentation for broader audiences          |
-| `pr`                | Creating or updating GitHub pull requests                          |
+**If the bot is relevant to the task, read `.flue/AGENTS.md` first.** That file covers the worker architecture, workflow routing, specialist agents (code review, conventions, style-guide), R2 state management, local dev scripts, and deployment. All bot-related npm scripts are prefixed `flue:` in the root `package.json` (e.g. `pnpm run flue:dev`, `pnpm run flue:deploy`).
+
+## Agent skills, commands, and agents
+
+Repo-specific agent config lives in `.agents/`. All subdirectories are committed. Tool-specific paths (`.opencode/agents`, `CLAUDE.md`) are symlinks into `.agents/`.
+
+### Skills
+
+Skills live in `.agents/skills/`. Each skill's `SKILL.md` describes what it does and when to use it. Load a skill when the task matches its description.
+
+The `contributing` skill is the entry point for any change to the docs — writing or editing pages, choosing content types and components, reviewing docs or code examples, adding changelog entries, and opening pull requests. It is a router that dispatches to task-specific files under `.agents/skills/contributing/references/`. Load it first for contribution tasks.
+
+### Agents
+
+Custom agent definitions live in `.agents/agents/` (symlinked from `.opencode/agents/`). Each agent's frontmatter describes its role.
+
+### Reference files
 
 Shared reference files in `.agents/references/`:
 

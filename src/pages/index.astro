@@ -34,6 +34,7 @@ const sidebar = [
 			{ label: "API", link: "/api/" },
 			{ label: "Agent Setup", link: "/agent-setup/" },
 			{ label: "Directory", link: "/directory/" },
+			{ label: "Changelog", link: "/changelog/" },
 			{
 				label: "Resources",
 				collapsed: true,
@@ -74,8 +75,8 @@ const sidebar = [
 					{ label: "Durable Objects", link: "/durable-objects/" },
 					{ label: "Queues", link: "/queues/" },
 					{ label: "Workflows", link: "/workflows/" },
+					{ label: "Flagship", link: "/flagship/" },
 					{ label: "Browser Run", link: "/browser-run/" },
-					{ label: "Pipelines", link: "/pipelines/" },
 					{ label: "Workers VPC", link: "/workers-vpc/" },
 					{
 						label: "Cloudflare for Platforms",
@@ -89,8 +90,12 @@ const sidebar = [
 				collapsed: true,
 				badge: groupIcon("workers-ai"),
 				items: [
+					{ label: "Models", link: "/ai/models/" },
 					{ label: "Workers AI", link: "/workers-ai/" },
 					{ label: "AI Gateway", link: "/ai-gateway/" },
+					{ label: "Agents", link: "/agents/" },
+					{ label: "Agent Memory", link: "/agent-memory/" },
+					{ label: "Sandbox SDK", link: "/sandbox/" },
 					{ label: "Vectorize", link: "/vectorize/" },
 					{ label: "AI Search", link: "/ai-search/" },
 					{ label: "AI Crawl Control", link: "/ai-crawl-control/" },
@@ -102,9 +107,12 @@ const sidebar = [
 				badge: groupIcon("kv"),
 				items: [
 					{ label: "R2", link: "/r2/" },
+					{ label: "R2 Data Catalog", link: "/r2/data-catalog/" },
+					{ label: "R2 SQL", link: "/r2-sql/" },
+					{ label: "Pipelines", link: "/pipelines/" },
 					{ label: "D1", link: "/d1/" },
 					{ label: "KV", link: "/kv/" },
-					{ label: "Hyperdrive", link: "/hyperdrive/" },
+					{ label: "Postgres & MySQL (Hyperdrive)", link: "/hyperdrive/" },
 				],
 			},
 			{
@@ -145,21 +153,41 @@ const sidebar = [
 				badge: groupIcon("cloudflare-one"),
 				items: [
 					{ label: "Overview", link: "/cloudflare-one/" },
+					{ label: "Insights & Logs", link: "/cloudflare-one/insights/" },
 					{
-						label: "Access",
-						link: "/cloudflare-one/access-controls/policies/",
+						label: "Team & Resources",
+						link: "/cloudflare-one/team-and-resources/",
+					},
+					{ label: "Networks", link: "/cloudflare-one/networks/" },
+					{
+						label: "Access controls",
+						link: "/cloudflare-one/access-controls/",
 					},
 					{
-						label: "Tunnel",
-						link: "/cloudflare-one/networks/connectors/cloudflare-tunnel/",
+						label: "Traffic policies",
+						link: "/cloudflare-one/traffic-policies/",
 					},
-					{ label: "Gateway", link: "/cloudflare-one/traffic-policies/" },
 					{
-						label: "Browser Isolation",
+						label: "Cloud & SaaS findings",
+						link: "/cloudflare-one/cloud-and-saas-findings/",
+					},
+					{
+						label: "Email security",
+						link: "/cloudflare-one/email-security/",
+					},
+					{
+						label: "Data loss prevention",
+						link: "/cloudflare-one/data-loss-prevention/",
+					},
+					{
+						label: "Browser isolation",
 						link: "/cloudflare-one/remote-browser-isolation/",
 					},
-					{ label: "WARP Client", link: "/warp-client/" },
-					{ label: "Email Security", link: "/email-security/" },
+					{
+						label: "Reusable components",
+						link: "/cloudflare-one/reusable-components/",
+					},
+					{ label: "Integrations", link: "/cloudflare-one/integrations/" },
 				],
 			},
 			{
@@ -170,7 +198,7 @@ const sidebar = [
 					{ label: "DNS", link: "/dns/" },
 					{ label: "1.1.1.1", link: "/1.1.1.1/" },
 					{ label: "Registrar", link: "/registrar/" },
-					{ label: "Email Routing", link: "/email-routing/" },
+					{ label: "Email Routing", link: "/email-service/" },
 					{ label: "DMARC Management", link: "/dmarc-management/" },
 				],
 			},
@@ -179,8 +207,14 @@ const sidebar = [
 				collapsed: true,
 				badge: groupIcon("network"),
 				items: [
+					{ label: "Tunnel", link: "/tunnel/" },
+					{ label: "Mesh", link: "/mesh/" },
 					{ label: "Magic Transit", link: "/magic-transit/" },
-					{ label: "Magic WAN", link: "/cloudflare-wan/" },
+					{ label: "Cloudflare WAN", link: "/cloudflare-wan/" },
+					{
+						label: "Cloudflare Network Firewall",
+						link: "/cloudflare-network-firewall/",
+					},
 					{ label: "Network Interconnect", link: "/network-interconnect/" },
 					{ label: "Spectrum", link: "/spectrum/" },
 					{ label: "BYOIP", link: "/byoip/" },
